@@ -20,3 +20,44 @@ References:
 
 * http://services.msdn.microsoft.com/ContentServices/ContentService.asmx
 * http://msdn.microsoft.com/en-us/magazine/cc163541.aspx
+
+List of .NET 4.5 classes
+------------------------
+
+The complete list of .NET Framework 4.5 classes can be downloaded here:
+
+https://github.com/yallie/MsdnHelper/blob/master/out/ClassLibrary45.csv.gz
+
+It's a CSV list with two fields, class name and content id. 
+Look up content id by class name, then use content id to create MSDN link for a class. For example:
+
+1. Class name: System.IDisposable
+2. Content id: aax125c9
+3. MSDN link: http://msdn.microsoft.com/en-us/library/aax125c9.aspx
+
+How to load and index the CSV file:
+
+```csharp
+using (var inputFile = File.OpenRead("ClassLibrary45.csv.gz"))
+using (var gzip = new GZipStream(inputFile, CompressionMode.Decompress))
+{
+	using (var sr = new StreamReader(gzip))
+	{
+		var data =
+			from rawLine in sr.ReadToEnd().Split('\n')
+				let line = rawLine.Trim()
+			where !string.IsNullOrEmpty(line) && !line.StartsWith("//")
+				let parts = line.Split(',')
+			select new
+			{
+				ClassName = parts.First(),
+				ContentId = parts.Last()
+			};
+
+		// class name -> content id
+		var classes = data.ToDictionary(c => c.ClassName, c => c.ContentId);
+		Console.WriteLine("{0} classes loaded.", classes.Count);
+	}
+}
+
+```
