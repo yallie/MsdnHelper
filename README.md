@@ -1,5 +1,5 @@
-MTPS Content Service usage example
-==================================
+MSDN Helper
+===========
 
 Syntax: MsdnHelper [AssetId] [Switches]
 
