@@ -1,4 +1,4 @@
-Build started 28.11.2012 16:32:15.
+Build started 28.11.2012 23:18:21.
      1>Project "D:\Externals\MsdnHelper\src\MsdnHelper.sln" on node 1 (default targets).
      1>Building with tools version "2.0".
      1>Target "ValidateSolutionConfiguration" in file "D:\Externals\MsdnHelper\src\MsdnHelper.sln.metaproj" from project "D:\Externals\MsdnHelper\src\MsdnHelper.sln" (entry point):
@@ -422,18 +422,9 @@ Build started 28.11.2012 16:32:15.
      2>Done building target "PreXsdCodeGen" in project "MsdnHelper.csproj".
        Target "XsdCodeGen" skipped, due to false condition; ( '$(XsdCodeGenPreCondition)' == 'True' ) was evaluated as ( 'False' == 'True' ).
      2>Target "CoreCompile" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets" from project "D:\Externals\MsdnHelper\src\MsdnHelper.csproj" (target "Compile" depends on it):
-       Building target "CoreCompile" completely.
-       Input file "Program.cs" is newer than output file "obj\Debug\MsdnHelper.pdb".
-       Using "Csc" task from assembly "Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
-       Task "Csc"
-         C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /platform:anycpu32bitpreferred /errorreport:prompt /warn:4 /define:DEBUG;TRACE /highentropyva+ /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.CSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Runtime.Serialization.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.ServiceModel.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.dll" /debug+ /debug:full /filealign:512 /optimize- /out:obj\Debug\MsdnHelper.exe /subsystemversion:6.00 /target:exe /utf8output Program.cs Properties\AssemblyInfo.cs "Service References\ContentService\Reference.cs" Toc.cs "C:\Users\yakovleva\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cs"
-         Microsoft (R) Visual C# Compiler version 4.0.30319.17929
-         
-         for Microsoft (R) .NET Framework 4.5
-         Copyright (C) Microsoft Corporation. All rights reserved.
-         
-       Done executing task "Csc".
-       Task "CallTarget" skipped, due to false condition; ('$(TargetsTriggeredByCompilation)' != '') was evaluated as ('' != '').
+       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+       Input files: Program.cs;Properties\AssemblyInfo.cs;Service References\ContentService\Reference.cs;Toc.cs;C:\Users\yakovleva\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cs;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.CSharp.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.DataSetExtensions.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Runtime.Serialization.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.ServiceModel.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.dll;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.NETFramework.props;D:\Externals\MsdnHelper\src\MsdnHelper.csproj;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.NETFramework.targets;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Xaml.targets
+       Output files: obj\Debug\MsdnHelper.exe;obj\Debug\MsdnHelper.pdb
      2>Done building target "CoreCompile" in project "MsdnHelper.csproj".
        Target "_TimeStampAfterCompile" skipped, due to false condition; ('$(RunPostBuildEvent)'=='OnOutputUpdated' or ('$(RegisterForComInterop)'=='true' and '$(OutputType)'=='library')) was evaluated as (''=='OnOutputUpdated' or (''=='true' and 'Exe'=='library')).
      2>Target "AfterCompile" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "D:\Externals\MsdnHelper\src\MsdnHelper.csproj" (target "Compile" depends on it):
@@ -494,7 +485,7 @@ Build started 28.11.2012 16:32:15.
      2>Target "CopyFilesToOutputDirectory" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "D:\Externals\MsdnHelper\src\MsdnHelper.csproj" (target "PrepareForRun" depends on it):
        Using "Copy" task from assembly "Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Copy"
-         Copying file from "obj\Debug\MsdnHelper.exe" to "..\bin\MsdnHelper.exe".
+         Did not copy from file "obj\Debug\MsdnHelper.exe" to file "..\bin\MsdnHelper.exe" because the "SkipUnchangedFiles" parameter was set to "true" in the project and the files' sizes and timestamps match.
        Done executing task "Copy".
        Task "Message"
          MsdnHelper -> D:\Externals\MsdnHelper\bin\MsdnHelper.exe
@@ -502,7 +493,7 @@ Build started 28.11.2012 16:32:15.
        Task "Copy" skipped, due to false condition; ('@(AddModules)' != '') was evaluated as ('' != '').
        Task "Copy" skipped, due to false condition; ('$(_SGenDllCreated)'=='true') was evaluated as ('false'=='true').
        Task "Copy"
-         Copying file from "obj\Debug\MsdnHelper.pdb" to "..\bin\MsdnHelper.pdb".
+         Did not copy from file "obj\Debug\MsdnHelper.pdb" to file "..\bin\MsdnHelper.pdb" because the "SkipUnchangedFiles" parameter was set to "true" in the project and the files' sizes and timestamps match.
        Done executing task "Copy".
        Task "Copy" skipped, due to false condition; ('$(_DocumentationFileProduced)'=='true') was evaluated as ('false'=='true').
        Task "Copy" skipped, due to false condition; ('@(IntermediateSatelliteAssembliesWithTargetPath)' != '') was evaluated as ('' != '').
@@ -566,4 +557,4 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.99
+Time Elapsed 00:00:00.41

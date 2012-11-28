@@ -18,23 +18,38 @@ namespace MsdnHelper
 		{
 			if (args.Any(a => a.Contains("?")))
 			{
-				var syntax = @"Syntax: MsdnHelper [AssetId]
+				var syntax = @"Syntax: MsdnHelper [AssetId] [/all]
 
 					|Prints CSV list of BCL classes and their content identities.
 					|Only lists classes with no human-readable aliases defined.
 
-					|AssetId — optional asset identity to load TOC from.
-					|By default, MsdnHelper lists BCL classes for .NET Framework version 4.5.";
+					|AssetId is an optional asset identity to load TOC from.
+					|By default, MsdnHelper lists BCL classes for .NET Framework version 4.5.
+					|/all switch will force MsdnHelper to list all BCL classes.";
 
 				Console.WriteLine(Regex.Replace(syntax, @"^[ \t]+\|", string.Empty, RegexOptions.Multiline));
 				return;
 			}
 
-			var rootAssetId = args.Length > 0 ? args.First() : DefaultAssetId;
-			Download(rootAssetId);
+			// parse command line arguments
+			var rootAssetId = DefaultAssetId;
+			var displayAll = false;
+
+			foreach (var arg in args)
+			{
+				if (arg.ToLowerInvariant().StartsWith("/a") || arg.ToLowerInvariant().StartsWith("-a"))
+				{
+					displayAll = true;
+					continue;
+				}
+
+				rootAssetId = arg;
+			}
+
+			Download(rootAssetId, displayAll);
 		}
 
-		static void Download(string rootAssetId)
+		static void Download(string rootAssetId, bool displayAll)
 		{
 			Console.WriteLine("// Command line: {0}", Environment.CommandLine);
 			Console.WriteLine("// Project page: https://github.com/yallie/MsdnHelper");
@@ -42,6 +57,16 @@ namespace MsdnHelper
 			// download .NET 4.5 class library TOC
 			var root = GetNamespaceToc(rootAssetId);
 			var classAssetPrefixLength = "AssetId:T:".Length;
+
+			// build filtering predicate
+			Func<string, string, bool> predicate = (t, a) => true;
+			if (!displayAll)
+			{
+				// display classes with no alias or aliases that don't match class names
+				predicate = (target, alias) =>
+					string.IsNullOrWhiteSpace(alias) ||
+						target.Substring(classAssetPrefixLength).ToLowerInvariant() != alias;
+			}
 
 			// find all BCL classes without readable aliases
 			var classes =
@@ -53,8 +78,7 @@ namespace MsdnHelper
 					let contentId = tuple.Item1
 					let contentAlias = tuple.Item2
 				where
-					string.IsNullOrWhiteSpace(contentAlias) || // no alias or alias don't match class name
-					@class.Target.Substring(classAssetPrefixLength).ToLowerInvariant() != contentAlias
+					predicate(@class.Target, contentAlias)
 				select new
 				{
 					ClassName = @class.Target.Substring(classAssetPrefixLength),
