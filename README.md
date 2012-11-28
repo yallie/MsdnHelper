@@ -1,22 +1,20 @@
 MTPS Content Service usage example
 ==================================
 
-Connects to MTPS web service and prints class names with their content identities.
-List of classes produced with this utility is used in ImmDoc.NET documentation generator:
-https://github.com/marek-stoj/ImmDoc.NET
-
 Syntax: MsdnHelper [AssetId] [Switches]
 
-Prints CSV list of BCL classes and their content identities.
-Only lists classes with no human-readable aliases defined.
+Connects to MTPS web service (MSDN database) and prints class names with their content identities.
+By default, only prints classes with no human-readable aliases defined.
+List of classes produced with this utility is used in ImmDoc.NET documentation generator:
+https://github.com/marek-stoj/ImmDoc.NET
 
 AssetId is an optional asset identity to load TOC from.
 By default, MsdnHelper lists BCL classes for .NET Framework version 4.5.
 
 Switches:
 
-* /all    force MsdnHelper to list all BCL classes.
-* /skip:N skip N top-level nodes.
+* /all — force MsdnHelper to list all BCL classes.
+* /skip:N — skip N top-level nodes.
 
 References:
 
