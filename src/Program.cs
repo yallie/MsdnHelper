@@ -18,14 +18,17 @@ namespace MsdnHelper
 		{
 			if (args.Any(a => a.Contains("?")))
 			{
-				var syntax = @"Syntax: MsdnHelper [AssetId] [/all]
+				var syntax = @"Syntax: MsdnHelper [AssetId] [Switches]
 
 					|Prints CSV list of BCL classes and their content identities.
 					|Only lists classes with no human-readable aliases defined.
 
 					|AssetId is an optional asset identity to load TOC from.
 					|By default, MsdnHelper lists BCL classes for .NET Framework version 4.5.
-					|/all switch will force MsdnHelper to list all BCL classes.";
+
+					|Switches:
+					|/all    force MsdnHelper to list all BCL classes.
+					|/skip:N skip N top-level nodes.";
 
 				Console.WriteLine(Regex.Replace(syntax, @"^[ \t]+\|", string.Empty, RegexOptions.Multiline));
 				return;
@@ -34,6 +37,7 @@ namespace MsdnHelper
 			// parse command line arguments
 			var rootAssetId = DefaultAssetId;
 			var displayAll = false;
+			var skipNodes = 0;
 
 			foreach (var arg in args)
 			{
@@ -43,13 +47,19 @@ namespace MsdnHelper
 					continue;
 				}
 
+				if (arg.ToLowerInvariant().StartsWith("/s") || arg.ToLowerInvariant().StartsWith("-s"))
+				{
+					skipNodes = Convert.ToInt32(arg.Substring(arg.IndexOf(":") + 1));
+					continue;
+				}
+
 				rootAssetId = arg;
 			}
 
-			Download(rootAssetId, displayAll);
+			Download(rootAssetId, displayAll, skipNodes);
 		}
 
-		static void Download(string rootAssetId, bool displayAll)
+		static void Download(string rootAssetId, bool displayAll, int skipNodes)
 		{
 			Console.WriteLine("// Command line: {0}", Environment.CommandLine);
 			Console.WriteLine("// Project page: https://github.com/yallie/MsdnHelper");
@@ -70,7 +80,7 @@ namespace MsdnHelper
 
 			// find all BCL classes without readable aliases
 			var classes =
-				from @namespace in root.Children
+				from @namespace in root.Children.Skip(skipNodes)
 					let namespaceToc = GetNamespaceWithNestedToc(@namespace.SubTree, @namespace.SubTreeVersion, @namespace.SubTreeLocale)
 				where namespaceToc != null
 				from @class in namespaceToc.Children
